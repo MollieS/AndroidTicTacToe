@@ -36,7 +36,7 @@ public class MoveListener implements View.OnClickListener {
         if (gameEngine.isWon()) {
             showWinner();
         } else {
-            Toast.makeText(context, "It's a draw!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.toast_draw, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -46,7 +46,7 @@ public class MoveListener implements View.OnClickListener {
     }
 
     private void showWinner() {
-        String winningMessage = gameEngine.winningMark() + " wins!";
+        String winningMessage = gameEngine.winningMark() + context.getString(R.string.toast_win);
         Toast.makeText(context, winningMessage, Toast.LENGTH_SHORT).show();
     }
 }
