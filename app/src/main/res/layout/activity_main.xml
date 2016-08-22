@@ -9,8 +9,70 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.molliestephenson.tictactoe.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text=""
+        android:id="@+id/centre_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/top_centre"
+        android:layout_above="@+id/centre_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="62dp" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/centre_bottom"
+        android:layout_below="@+id/centre_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/right_centre"
+        android:layout_alignTop="@+id/centre_button"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/left_centre"
+        android:layout_alignTop="@+id/centre_button"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/left_top_corner"
+        android:layout_alignBottom="@+id/top_centre"
+        android:layout_alignEnd="@+id/left_centre" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/right_top_corner"
+        android:layout_alignBottom="@+id/top_centre"
+        android:layout_alignStart="@+id/right_centre" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/left_bottom"
+        android:layout_alignBottom="@+id/centre_bottom"
+        android:layout_alignEnd="@+id/left_centre" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/right_bottom"
+        android:layout_alignTop="@+id/centre_bottom"
+        android:layout_alignStart="@+id/right_centre" />
+
 </RelativeLayout>
