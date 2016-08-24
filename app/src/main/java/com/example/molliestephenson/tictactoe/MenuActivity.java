@@ -12,28 +12,34 @@ public class MenuActivity extends AppCompatActivity {
     private Intent mGameOptions;
     private static final String EXTRA_GAME_TYPE = "com.example.molliestephenson.tictactoe.game_type";
     private static final String EXTRA_BOARD_TYPE = "com.example.molliestephenson.tictactoe.board_type";
+    private Button mPlayButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        mGameOptionButton = (Button) findViewById(R.id.hvh);
+        mGameOptionButton = (Button) findViewById(R.id.human_v_human);
+        mBoardSizeButton = (Button) findViewById(R.id._3x3);
+        mPlayButton = (Button) findViewById(R.id.play_button);
+        mGameOptions = new Intent(MenuActivity.this, MainActivity.class);
         setGameOptionButton();
         setBoardOptionButton();
+        setPlayButton();
     }
 
     private void setBoardOptionButton() {
-        mBoardSizeButton = (Button) findViewById(R.id.board_size);
         mBoardSizeButton.setOnClickListener(view -> {
             mGameOptions.putExtra(EXTRA_BOARD_TYPE, true);
-            startActivity(mGameOptions);
         });
     }
 
     private void setGameOptionButton() {
         mGameOptionButton.setOnClickListener(view -> {
-            mGameOptions = new Intent(MenuActivity.this, MainActivity.class);
             mGameOptions.putExtra(EXTRA_GAME_TYPE, true);
         });
+    }
+
+    private void setPlayButton() {
+        mPlayButton.setOnClickListener(view -> startActivity(mGameOptions));
     }
 }

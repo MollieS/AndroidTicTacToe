@@ -12,16 +12,30 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/human_v_human"
-        android:id="@+id/hvh"
-        android:layout_above="@+id/board_size"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/play"
+        android:id="@+id/play_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="99dp"/>
 
-    <Button
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_3_x_3"
-        android:id="@+id/board_size"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/human_v_human_button"
+        android:id="@+id/human_v_human"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="136dp"
+        android:checked="false"/>
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_3x3_button"
+        android:id="@+id/_3x3"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/human_v_human"
+        android:layout_alignStart="@+id/human_v_human"
+        android:checked="false"/>
+
 </RelativeLayout>
