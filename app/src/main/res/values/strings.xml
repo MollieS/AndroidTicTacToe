@@ -2,10 +2,6 @@
     <string name="app_name">TicTacToe</string>
     <string name="toast_draw">It\'s a draw!</string>
     <string name="toast_win">" wins!"</string>
-    <string name="_3_x_3">3 x 3</string>
-    <string name="human_v_human">Human v Human</string>
-    <string name="board_3_x_3">3 x 3</string>
-    <string name="humanvhuman">HVH</string>
     <string name="play">play</string>
     <string name="human_v_human_button">Human v Human</string>
     <string name="_3x3_button">3x3</string>
