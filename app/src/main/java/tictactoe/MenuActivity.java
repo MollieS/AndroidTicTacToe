@@ -29,13 +29,13 @@ public class MenuActivity extends AppCompatActivity {
 
     private void setBoardOptionButton() {
         mBoardSizeButton.setOnClickListener(view -> {
-            mGameOptions.putExtra(EXTRA_BOARD_TYPE, true);
+            mGameOptions.putExtra(EXTRA_BOARD_TYPE, 3);
         });
     }
 
     private void setGameOptionButton() {
         mGameOptionButton.setOnClickListener(view -> {
-            mGameOptions.putExtra(EXTRA_GAME_TYPE, true);
+            mGameOptions.putExtra(EXTRA_GAME_TYPE, new String[]{"HUMAN", "HUMAN"});
         });
     }
 

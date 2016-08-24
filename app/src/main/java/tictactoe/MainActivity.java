@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        boolean isAHumanVHumanGame = getIntent().getBooleanExtra(EXTRA_GAME_TYPE, true);
-        boolean isA3x3Board = getIntent().getBooleanExtra(EXTRA_BOARD_TYPE, true);
-        createGame(isAHumanVHumanGame, isA3x3Board);
+        String[] players = getIntent().getStringArrayExtra(EXTRA_GAME_TYPE);
+        int isA3x3Board = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
+        createGame(isA3x3Board);
         createBoard();
         setClickable();
     }
@@ -51,23 +51,11 @@ public class MainActivity extends AppCompatActivity {
         mBoard.add(mRightBottom);
     }
 
-    private void createGame(boolean isAHumanVHumanGame, boolean isA3x3Board) {
-        Board board = setBoardSize(isA3x3Board);
-        Player player1 = null;
-        Player player2 = null;
-        if (isAHumanVHumanGame) {
-            player1 = new MobilePlayer(Marks.X);
-            player2 = new MobilePlayer(Marks.O);
-        }
+    private void createGame(int boardSize) {
+        Board board = new Board(boardSize);
+        Player player1 = new MobilePlayer(Marks.X);
+        Player player2 = new MobilePlayer(Marks.O);
         this.mGameEngine = new GameEngine(player1, player2, board);
-    }
-
-    private Board setBoardSize(boolean isA3x3Board) {
-        Board board = null;
-        if (isA3x3Board) {
-            board = new Board(3);
-        }
-        return board;
     }
 
     private void setClickable() {
