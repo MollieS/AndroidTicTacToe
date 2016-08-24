@@ -1,4 +1,4 @@
-package tictactoe;
+package mollie.tictactoe;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,10 +14,10 @@ import ttt.game.Marks;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<Button> mBoard = new ArrayList<>();
+    private final List<Button> mBoard = new ArrayList<>();
     private GameEngine mGameEngine;
-    private static final String EXTRA_GAME_TYPE = "com.example.molliestephenson.tictactoe.game_type";
-    private static final String EXTRA_BOARD_TYPE = "com.example.molliestephenson.tictactoe.board_type";
+    private static final String EXTRA_GAME_TYPE = "tictactoe.game_type";
+    private static final String EXTRA_BOARD_TYPE = "tictactoe.board_type";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

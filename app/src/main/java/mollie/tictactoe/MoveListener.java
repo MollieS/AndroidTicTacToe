@@ -1,4 +1,4 @@
-package tictactoe;
+package mollie.tictactoe;
 
 import android.content.Context;
 import android.view.View;
@@ -10,10 +10,10 @@ import ttt.game.Marks;
 
 public class MoveListener implements View.OnClickListener {
 
-    private Button cell;
-    private GameEngine gameEngine;
-    private int location;
-    private Context context;
+    private final Button cell;
+    private final GameEngine gameEngine;
+    private final int location;
+    private final Context context;
 
     public MoveListener(int location, Button cell, Context context, GameEngine gameEngine) {
         this.location = location;

@@ -1,4 +1,4 @@
-package tictactoe;
+package mollie.tictactoe;
 
 import ttt.Player;
 import ttt.game.Board;
@@ -6,7 +6,7 @@ import ttt.game.Marks;
 
 public class MobilePlayer implements Player {
 
-    private Marks mark;
+    private final Marks mark;
 
     public MobilePlayer(Marks mark) {
         this.mark = mark;

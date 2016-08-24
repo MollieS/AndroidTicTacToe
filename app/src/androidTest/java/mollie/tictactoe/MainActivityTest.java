@@ -1,4 +1,4 @@
-package tictactoe;
+package mollie.tictactoe;
 
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;

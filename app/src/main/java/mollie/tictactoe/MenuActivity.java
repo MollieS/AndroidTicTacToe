@@ -1,4 +1,4 @@
-package tictactoe;
+package mollie.tictactoe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,15 +28,11 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setBoardOptionButton() {
-        mBoardSizeButton.setOnClickListener(view -> {
-            mGameOptions.putExtra(EXTRA_BOARD_TYPE, 3);
-        });
+        mBoardSizeButton.setOnClickListener(view -> mGameOptions.putExtra(EXTRA_BOARD_TYPE, 3));
     }
 
     private void setGameOptionButton() {
-        mGameOptionButton.setOnClickListener(view -> {
-            mGameOptions.putExtra(EXTRA_GAME_TYPE, new String[]{"HUMAN", "HUMAN"});
-        });
+        mGameOptionButton.setOnClickListener(view -> mGameOptions.putExtra(EXTRA_GAME_TYPE, new String[]{"HUMAN", "HUMAN"}));
     }
 
     private void setPlayButton() {

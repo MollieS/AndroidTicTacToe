@@ -10,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "tictactoe"
+        applicationId "mollie.tictactoe"
         minSdkVersion 23
         targetSdkVersion 24
         versionCode 1
