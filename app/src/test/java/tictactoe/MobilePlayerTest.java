@@ -1,4 +1,4 @@
-package com.example.molliestephenson.tictactoe;
+package tictactoe;
 
 import org.junit.Test;
 

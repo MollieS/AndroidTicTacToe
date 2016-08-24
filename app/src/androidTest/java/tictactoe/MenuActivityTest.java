@@ -1,8 +1,10 @@
-package com.example.molliestephenson.tictactoe;
+package tictactoe;
 
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+
+import com.example.molliestephenson.tictactoe.R;
 
 import org.junit.Rule;
 import org.junit.Test;

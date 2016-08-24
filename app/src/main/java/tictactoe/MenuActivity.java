@@ -1,4 +1,4 @@
-package com.example.molliestephenson.tictactoe;
+package tictactoe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ public class MenuActivity extends AppCompatActivity {
     private Button mGameOptionButton;
     private Button mBoardSizeButton;
     private Intent mGameOptions;
-    private static final String EXTRA_GAME_TYPE = "com.example.molliestephenson.tictactoe.game_type";
-    private static final String EXTRA_BOARD_TYPE = "com.example.molliestephenson.tictactoe.board_type";
+    private static final String EXTRA_GAME_TYPE = "tictactoe.game_type";
+    private static final String EXTRA_BOARD_TYPE = "tictactoe.board_type";
     private Button mPlayButton;
 
     @Override

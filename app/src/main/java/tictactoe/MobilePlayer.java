@@ -1,4 +1,4 @@
-package com.example.molliestephenson.tictactoe;
+package tictactoe;
 
 import ttt.Player;
 import ttt.game.Board;

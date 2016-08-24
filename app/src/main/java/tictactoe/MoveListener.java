@@ -1,4 +1,4 @@
-package com.example.molliestephenson.tictactoe;
+package tictactoe;
 
 import android.content.Context;
 import android.view.View;
