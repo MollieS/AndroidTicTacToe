@@ -1,6 +1,5 @@
 package mollie.tictactoe;
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -26,11 +25,11 @@ public class MainActivityTest {
 
     @Test
     public void canWinAGame() {
-        findButtonById(R.id.left_top_corner).perform(click());
-        findButtonById(R.id.left_centre).perform(click());
-        findButtonById(R.id.top_centre).perform(click());
-        findButtonById(R.id.centre_button).perform(click());
-        findButtonById(R.id.right_top_corner).perform(click());
+        clickButton(R.id.left_top_corner);
+        clickButton(R.id.left_centre);
+        clickButton(R.id.top_centre);
+        clickButton(R.id.centre_button);
+        clickButton(R.id.right_top_corner);
         onView(withText("X wins!"))
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
@@ -38,21 +37,22 @@ public class MainActivityTest {
 
     @Test
     public void canDrawAGame() {
-        findButtonById(R.id.left_top_corner).perform(click());
-        findButtonById(R.id.centre_button).perform(click());
-        findButtonById(R.id.left_centre).perform(click());
-        findButtonById(R.id.left_bottom).perform(click());
-        findButtonById(R.id.right_top_corner).perform(click());
-        findButtonById(R.id.top_centre).perform(click());
-        findButtonById(R.id.centre_bottom).perform(click());
-        findButtonById(R.id.right_bottom).perform(click());
-        findButtonById(R.id.right_centre).perform(click());
+        clickButton(R.id.left_top_corner);
+        clickButton(R.id.centre_button);
+        clickButton(R.id.left_centre);
+        clickButton(R.id.left_bottom);
+        clickButton(R.id.right_top_corner);
+        clickButton(R.id.top_centre);
+        clickButton(R.id.centre_bottom);
+        clickButton(R.id.right_bottom);
+        clickButton(R.id.right_centre);
         onView(withText("It's a draw!"))
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
     }
 
-    private ViewInteraction findButtonById(int id) {
-       return onView(withId(id));
+    public static void clickButton(int id) {
+        onView(withId(id)).perform(click());
     }
+
 }

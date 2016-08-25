@@ -10,7 +10,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button mGameOptionButton;
     private Button mBoardSizeButton;
     private Intent mGameOptions;
-    private static final String EXTRA_GAME_TYPE = "tictactoe.game_type";
+    private static final String EXTRA_PLAYER_TYPES = "tictactoe.game_type";
     private static final String EXTRA_BOARD_TYPE = "tictactoe.board_type";
     private Button mPlayButton;
 
@@ -32,7 +32,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setGameOptionButton() {
-        mGameOptionButton.setOnClickListener(view -> mGameOptions.putExtra(EXTRA_GAME_TYPE, new String[]{"HUMAN", "HUMAN"}));
+        mGameOptionButton.setOnClickListener(view -> mGameOptions.putExtra(EXTRA_PLAYER_TYPES, new String[]{"HUMAN", "HUMAN"}));
     }
 
     private void setPlayButton() {
