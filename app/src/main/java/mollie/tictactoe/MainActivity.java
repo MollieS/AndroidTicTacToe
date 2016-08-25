@@ -16,18 +16,20 @@ public class MainActivity extends AppCompatActivity {
 
     private final List<Button> mBoard = new ArrayList<>();
     private GameEngine mGameEngine;
-    private static final String EXTRA_PLAYER_TYPES = "tictactoe.game_type";
-    private static final String EXTRA_BOARD_TYPE = "tictactoe.board_type";
+    private static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
+    private static final String EXTRA_BOARD_TYPE = "mollie.tictactoe.board_type";
+    private static final String EXTRA_GAME_TYPE = "mollie.tictactoe.game_type";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String[] playersTypes = getIntent().getStringArrayExtra(EXTRA_PLAYER_TYPES);
-        int isA3x3Board = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
-        createGame(isA3x3Board);
+        boolean isAComputerGame = getIntent().getBooleanExtra(EXTRA_GAME_TYPE, false);
+        int boardSize = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
+        createGame(playersTypes, boardSize);
         createBoard();
-        setClickable();
+        setClickable(isAComputerGame);
     }
 
     private void createBoard() {
@@ -51,16 +53,16 @@ public class MainActivity extends AppCompatActivity {
         mBoard.add(mRightBottom);
     }
 
-    private void createGame(int boardSize) {
+    private void createGame(String[] playerTypes, int boardSize) {
         Board board = new Board(boardSize);
-        Player player1 = new MobilePlayer(Marks.X);
-        Player player2 = new MobilePlayer(Marks.O);
+        Player player1 = AndroidPlayerFactory.create(playerTypes[0], Marks.X);
+        Player player2 = AndroidPlayerFactory.create(playerTypes[1], Marks.O);
         this.mGameEngine = new GameEngine(player1, player2, board);
     }
 
-    private void setClickable() {
+    private void setClickable(boolean isAComputerGame) {
         for (int cell = 0; cell < mBoard.size(); cell++) {
-            MoveListener moveListener = new MoveListener(cell, mBoard.get(cell), getApplicationContext(), mGameEngine);
+            MoveListener moveListener = new MoveListener(cell, mBoard, getApplicationContext(), mGameEngine, isAComputerGame);
             mBoard.get(cell).setOnClickListener(moveListener);
         }
     }

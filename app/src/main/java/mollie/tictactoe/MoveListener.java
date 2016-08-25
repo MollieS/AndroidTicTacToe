@@ -5,21 +5,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.List;
+
 import ttt.game.GameEngine;
 import ttt.game.Marks;
 
 public class MoveListener implements View.OnClickListener {
 
-    private final Button cell;
+    private final List<Button> uiBoard;
     private final GameEngine gameEngine;
+    private final Button cell;
     private final int location;
     private final Context context;
+    private final boolean isAComputerGame;
 
-    public MoveListener(int location, Button cell, Context context, GameEngine gameEngine) {
+    public MoveListener(int location, List<Button> uiBoard, Context context, GameEngine gameEngine, boolean isAComputerGame) {
         this.location = location;
-        this.cell = cell;
+        this.uiBoard = uiBoard;
+        this.cell = uiBoard.get(location);
         this.context = context;
         this.gameEngine = gameEngine;
+        this.isAComputerGame = isAComputerGame;
     }
 
     @Override
@@ -29,6 +35,20 @@ public class MoveListener implements View.OnClickListener {
         }
         if (gameEngine.isOver()) {
             showResult();
+        }
+        if (isAComputerGame) {
+            playComputerMove();
+        }
+    }
+
+    private void playComputerMove() {
+        try {
+            int computerMove = gameEngine.getPlayerMove(gameEngine.showBoard());
+            gameEngine.play(computerMove);
+            Button button = uiBoard.get(computerMove);
+            button.setText(gameEngine.board(computerMove).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
