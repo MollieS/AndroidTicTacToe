@@ -16,14 +16,14 @@ public class MainActivity extends AppCompatActivity {
 
     private final List<Button> mBoard = new ArrayList<>();
     private GameEngine mGameEngine;
-    private static final String EXTRA_GAME_TYPE = "tictactoe.game_type";
+    private static final String EXTRA_PLAYER_TYPES = "tictactoe.game_type";
     private static final String EXTRA_BOARD_TYPE = "tictactoe.board_type";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] players = getIntent().getStringArrayExtra(EXTRA_GAME_TYPE);
+        String[] playersTypes = getIntent().getStringArrayExtra(EXTRA_PLAYER_TYPES);
         int isA3x3Board = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
         createGame(isA3x3Board);
         createBoard();
