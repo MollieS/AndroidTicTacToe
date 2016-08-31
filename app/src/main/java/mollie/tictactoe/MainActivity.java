@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
     private static final String EXTRA_BOARD_TYPE = "mollie.tictactoe.board_type";
     private static final String EXTRA_GAME_TYPE = "mollie.tictactoe.game_type";
+    private static final String EXTRA_COMPUTER_FIRST = "mollie.tictactoe.computer_first";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,25 @@ public class MainActivity extends AppCompatActivity {
         String[] playersTypes = getIntent().getStringArrayExtra(EXTRA_PLAYER_TYPES);
         boolean isAComputerGame = getIntent().getBooleanExtra(EXTRA_GAME_TYPE, false);
         int boardSize = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
+        boolean isComputerMove = getIntent().getBooleanExtra(EXTRA_COMPUTER_FIRST, false);
         createGame(playersTypes, boardSize);
         createBoard();
         setClickable(isAComputerGame);
+        if (isComputerMove) {
+            int move = getComputerMove();
+            mGameEngine.play(move);
+            mBoard.get(move).setText(mGameEngine.board(move).toString());
+        }
+    }
+
+    private int getComputerMove() {
+        int move = -1;
+        try {
+            move = mGameEngine.getPlayerMove(mGameEngine.showBoard());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return move;
     }
 
     private void createBoard() {

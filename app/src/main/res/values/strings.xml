@@ -6,4 +6,7 @@
     <string name="human_v_human_button">Human v Human</string>
     <string name="_3x3_button">3x3</string>
     <string name="human_v_computer">Human v Computer</string>
+    <string name="human_v_random_computer">Human v Random Computer</string>
+    <string name="human_v_perfect_computer">Human v Perfect Computer</string>
+    <string name="random_computer_v_human">Random Computer v Human</string>
 </resources>

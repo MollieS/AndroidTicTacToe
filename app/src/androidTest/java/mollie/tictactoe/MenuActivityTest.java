@@ -26,4 +26,20 @@ public class MenuActivityTest {
         clickButton(R.id.play_button);
         onView(withId(R.id.board)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void canChooseHumanVRandomComputerGame() {
+        clickButton(R.id.human_v_random);
+        clickButton(R.id._3x3);
+        clickButton(R.id.play_button);
+        onView(withId(R.id.board)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void canChooseHumanVPerfectComputerGamw() {
+        clickButton(R.id.human_v_perfect);
+        clickButton(R.id._3x3);
+        clickButton(R.id.play_button);
+        onView(withId(R.id.board)).check(matches(isDisplayed()));
+    }
 }

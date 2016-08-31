@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
     private static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
     private static final String EXTRA_BOARD_TYPE = "mollie.tictactoe.board_type";
     private static final String EXTRA_GAME_TYPE = "mollie.tictactoe.game_type";
+    private static final String EXTRA_COMPUTER_FIRST = "mollie.tictactoe.computer_first";
     private Button mPlayButton;
 
     @Override
@@ -42,19 +43,45 @@ public class MenuActivity extends AppCompatActivity {
         boolean checked = ((RadioButton) view).isChecked();
         switch (view.getId()) {
             case R.id.human_v_human:
-                if (checked) {
-                    mPlayerTypes = new String[]{HUMAN, HUMAN};
-                    mGameOptions.putExtra(EXTRA_PLAYER_TYPES, mPlayerTypes);
-                    mGameOptions.putExtra(EXTRA_GAME_TYPE, false);
-                }
+                setPlayerTypes(checked, HUMAN, HUMAN);
+                setGameInteractivity(false);
+                setComputerIsFirst(false);
                 break;
             case R.id.human_v_random:
-                if (checked) {
-                    mPlayerTypes = new String[]{HUMAN, RANDOM};
-                    mGameOptions.putExtra(EXTRA_PLAYER_TYPES, mPlayerTypes);
-                    mGameOptions.putExtra(EXTRA_GAME_TYPE, true);
-                }
+                setPlayerTypes(checked, HUMAN, RANDOM);
+                setGameInteractivity(true);
+                setComputerIsFirst(false);
+                break;
+            case R.id.human_v_perfect:
+                setPlayerTypes(checked, HUMAN, PERFECT);
+                setGameInteractivity(true);
+                setComputerIsFirst(false);
+                break;
+            case R.id.random_v_human:
+                setPlayerTypes(checked, RANDOM, HUMAN);
+                setGameInteractivity(true);
+                setComputerIsFirst(true);
+                break;
+            case R.id.perfect_v_human:
+                setPlayerTypes(checked, PERFECT, HUMAN);
+                setGameInteractivity(true);
+                setComputerIsFirst(true);
                 break;
         }
+        mGameOptions.putExtra(EXTRA_PLAYER_TYPES, mPlayerTypes);
+    }
+
+    private void setGameInteractivity(boolean isAComputerGame) {
+        mGameOptions.putExtra(EXTRA_GAME_TYPE, isAComputerGame);
+    }
+
+    private void setPlayerTypes(boolean checked, String player1, String player2) {
+        if (checked) {
+            mPlayerTypes = new String[]{player1, player2};
+        }
+    }
+
+    public void setComputerIsFirst(boolean computerIsFirst) {
+        mGameOptions.putExtra(EXTRA_COMPUTER_FIRST, computerIsFirst);
     }
 }
