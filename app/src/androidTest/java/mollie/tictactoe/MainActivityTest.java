@@ -80,5 +80,4 @@ public class MainActivityTest {
     public static void clickButton(int id) {
         onView(withId(id)).perform(click());
     }
-
 }
