@@ -16,7 +16,7 @@ import ttt.game.Marks;
 public class MainActivity extends AppCompatActivity {
 
     private final String LOG_TAG = getClass().getName();
-    private List<Button> mBoard = new ArrayList<>();
+    private List<Button> mBoard;
     private GameEngine mGameEngine;
     public static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
     public static final String EXTRA_BOARD_TYPE = "mollie.tictactoe.board_type";

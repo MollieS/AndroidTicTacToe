@@ -73,7 +73,6 @@ public class MenuActivityTest {
                         hasComputerGameBoolean(true)))));
     }
 
-
     @Test
     public void addsRandomVHumanExtrasToIntent() {
         chooseGame(R.id.random_v_human);

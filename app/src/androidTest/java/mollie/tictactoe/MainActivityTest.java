@@ -18,15 +18,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static mollie.tictactoe.AndroidPlayerType.HUMAN;
+import static mollie.tictactoe.MainActivity.*;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static ttt.PlayerType.RANDOM;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
-
-    private static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
-    private static final String EXTRA_GAME_TYPE = "mollie.tictactoe.game_type";
 
     @Rule
     public ActivityTestRule mActivityRule = new ActivityTestRule<>(MainActivity.class, true, false);

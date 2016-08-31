@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MobilePlayerTest {
 
-   private final MobilePlayer player = new MobilePlayer(Marks.X);
+    private final MobilePlayer player = new MobilePlayer(Marks.X);
 
     @Test
     public void knowsItsMark() {
@@ -23,7 +23,7 @@ public class MobilePlayerTest {
     }
 
     @Test
-    public void testPlayerType() throws Exception {
+    public void returnsCorrectPlayerType() throws Exception {
         assertEquals(MobilePlayer.class, player.playerType());
     }
 }
