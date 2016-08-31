@@ -17,7 +17,6 @@ import static mollie.tictactoe.MainActivity.EXTRA_PLAYER_TYPES;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button mBoardSizeButton;
     private Intent mGameOptions;
     private Button mPlayButton;
 
@@ -25,15 +24,9 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        mBoardSizeButton = (Button) findViewById(R.id._3x3);
         mPlayButton = (Button) findViewById(R.id.play_button);
         mGameOptions = new Intent(MenuActivity.this, MainActivity.class);
-        setBoardOptionButton();
         setPlayButton();
-    }
-
-    private void setBoardOptionButton() {
-        mBoardSizeButton.setOnClickListener(view -> mGameOptions.putExtra(EXTRA_BOARD_TYPE, 3));
     }
 
     private void setPlayButton() {
@@ -62,6 +55,22 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.perfect_v_human:
                 setPlayerTypes(checked, PERFECT, HUMAN);
                 setComputerIsFirst(true);
+                break;
+        }
+    }
+
+    public void onBoardSizeSelected(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()) {
+            case R.id._3x3:
+                if (checked) {
+                    mGameOptions.putExtra(EXTRA_BOARD_TYPE, 3);
+                }
+                break;
+            case R.id._4x4:
+                if (checked) {
+                    mGameOptions.putExtra(EXTRA_BOARD_TYPE, 4);
+                }
                 break;
         }
     }

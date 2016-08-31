@@ -16,15 +16,31 @@
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="99dp"
         android:text="@string/play"/>
-
-    <RadioButton
-        android:id="@+id/_3x3"
+    <RadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:checked="false"
-        android:text="@string/_3x3_button"/>
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/_3x3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:checked="true"
+            android:onClick="onBoardSizeSelected"
+            android:text="@string/_3x3_button"/>
+
+        <RadioButton
+            android:id="@+id/_4x4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:onClick="onBoardSizeSelected"
+            android:text="@string/_4x4"/>
+    </RadioGroup>
+
 
     <RadioGroup
         android:layout_width="wrap_content"
