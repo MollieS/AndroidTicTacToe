@@ -38,7 +38,7 @@ public class MoveListener implements View.OnClickListener {
     }
 
     private void playComputerOpponentMove() {
-        if (isAComputerGame) {
+        if (isAComputerGame && !gameEngine.isOver()) {
             playComputerMove();
         }
     }
