@@ -1,6 +1,7 @@
 package mollie.tictactoe;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import ttt.game.Marks;
 
 public class MoveListener implements View.OnClickListener {
 
+    private final String LOG_TAG = getClass().getName();
     private final List<Button> uiBoard;
     private final GameEngine gameEngine;
     private final Button cell;
@@ -30,25 +32,36 @@ public class MoveListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (!gameEngine.isOver() && gameEngine.board(location) == Marks.NULL) {
-            updateView();
+        playMove();
+        showGameStatus();
+        playComputerOpponentMove();
+    }
+
+    private void playComputerOpponentMove() {
+        if (isAComputerGame) {
+            playComputerMove();
         }
+    }
+
+    private void showGameStatus() {
         if (gameEngine.isOver()) {
             showResult();
         }
-        if (isAComputerGame) {
-            playComputerMove();
+    }
+
+    private void playMove() {
+        if (!gameEngine.isOver() && gameEngine.board(location) == Marks.NULL) {
+            updateView(cell, location);
         }
     }
 
     private void playComputerMove() {
         try {
             int computerMove = gameEngine.getPlayerMove(gameEngine.showBoard());
-            gameEngine.play(computerMove);
             Button button = uiBoard.get(computerMove);
-            button.setText(gameEngine.board(computerMove).toString());
+            updateView(button, computerMove);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(LOG_TAG, "Error: " + e);
         }
     }
 
@@ -60,9 +73,9 @@ public class MoveListener implements View.OnClickListener {
         }
     }
 
-    private void updateView() {
-        gameEngine.play(location);
-        cell.setText(gameEngine.board(location).toString());
+    private void updateView(Button cellButton, int moveLocation) {
+        gameEngine.play(moveLocation);
+        cellButton.setText(gameEngine.board(moveLocation).toString());
     }
 
     private void showWinner() {

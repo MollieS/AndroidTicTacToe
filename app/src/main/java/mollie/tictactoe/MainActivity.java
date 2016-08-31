@@ -2,6 +2,7 @@ package mollie.tictactoe;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import ttt.game.Marks;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String LOG_TAG = getLocalClassName();
     private List<Button> mBoard = new ArrayList<>();
     private GameEngine mGameEngine;
     public static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             move = mGameEngine.getPlayerMove(mGameEngine.showBoard());
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(LOG_TAG, "Error: " + e);
         }
         return move;
     }

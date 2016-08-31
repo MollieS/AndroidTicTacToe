@@ -42,30 +42,25 @@ public class MenuActivity extends AppCompatActivity {
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
+        setGameInteractivity(true);
+        setComputerIsFirst(false);
         switch (view.getId()) {
             case R.id.human_v_human:
                 setPlayerTypes(checked, HUMAN, HUMAN);
                 setGameInteractivity(false);
-                setComputerIsFirst(false);
                 break;
             case R.id.human_v_random:
                 setPlayerTypes(checked, HUMAN, RANDOM);
-                setGameInteractivity(true);
-                setComputerIsFirst(false);
                 break;
             case R.id.human_v_perfect:
                 setPlayerTypes(checked, HUMAN, PERFECT);
-                setGameInteractivity(true);
-                setComputerIsFirst(false);
                 break;
             case R.id.random_v_human:
                 setPlayerTypes(checked, RANDOM, HUMAN);
-                setGameInteractivity(true);
                 setComputerIsFirst(true);
                 break;
             case R.id.perfect_v_human:
                 setPlayerTypes(checked, PERFECT, HUMAN);
-                setGameInteractivity(true);
                 setComputerIsFirst(true);
                 break;
         }
