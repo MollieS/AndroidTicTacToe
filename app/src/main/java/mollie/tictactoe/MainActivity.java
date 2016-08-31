@@ -1,7 +1,7 @@
-package com.example.molliestephenson.tictactoe;
+package mollie.tictactoe;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -14,14 +14,18 @@ import ttt.game.Marks;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<Button> mBoard = new ArrayList<>();
+    private final List<Button> mBoard = new ArrayList<>();
     private GameEngine mGameEngine;
+    private static final String EXTRA_PLAYER_TYPES = "tictactoe.game_type";
+    private static final String EXTRA_BOARD_TYPE = "tictactoe.board_type";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        createGame();
+        String[] playersTypes = getIntent().getStringArrayExtra(EXTRA_PLAYER_TYPES);
+        int isA3x3Board = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
+        createGame(isA3x3Board);
         createBoard();
         setClickable();
     }
@@ -47,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         mBoard.add(mRightBottom);
     }
 
-    private void createGame() {
-        Board board = new Board(3);
+    private void createGame(int boardSize) {
+        Board board = new Board(boardSize);
         Player player1 = new MobilePlayer(Marks.X);
         Player player2 = new MobilePlayer(Marks.O);
         this.mGameEngine = new GameEngine(player1, player2, board);

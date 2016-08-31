@@ -1,4 +1,4 @@
-package com.example.molliestephenson.tictactoe;
+package mollie.tictactoe;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MobilePlayerTest {
 
-   private MobilePlayer player = new MobilePlayer(Marks.X);
+   private final MobilePlayer player = new MobilePlayer(Marks.X);
 
     @Test
     public void knowsItsMark() {
