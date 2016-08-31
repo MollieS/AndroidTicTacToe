@@ -74,7 +74,7 @@
             android:layout_marginTop="20dp"
             android:checked="false"
             android:onClick="onRadioButtonClicked"
-            android:text="Perfect Computer v Human"/>
+            android:text="@string/perfect_computer_v_human"/>
 
     </RadioGroup>
 

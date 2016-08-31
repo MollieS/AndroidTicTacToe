@@ -7,17 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-import static mollie.tictactoe.AndroidPlayerType.*;
+import static mollie.tictactoe.AndroidPlayerType.HUMAN;
+import static mollie.tictactoe.AndroidPlayerType.PERFECT;
+import static mollie.tictactoe.AndroidPlayerType.RANDOM;
+import static mollie.tictactoe.MainActivity.EXTRA_BOARD_TYPE;
+import static mollie.tictactoe.MainActivity.EXTRA_COMPUTER_FIRST;
+import static mollie.tictactoe.MainActivity.EXTRA_GAME_TYPE;
+import static mollie.tictactoe.MainActivity.EXTRA_PLAYER_TYPES;
 
 public class MenuActivity extends AppCompatActivity {
 
     private Button mBoardSizeButton;
     private Intent mGameOptions;
-    private String[] mPlayerTypes;
-    private static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
-    private static final String EXTRA_BOARD_TYPE = "mollie.tictactoe.board_type";
-    private static final String EXTRA_GAME_TYPE = "mollie.tictactoe.game_type";
-    private static final String EXTRA_COMPUTER_FIRST = "mollie.tictactoe.computer_first";
     private Button mPlayButton;
 
     @Override
@@ -68,7 +69,6 @@ public class MenuActivity extends AppCompatActivity {
                 setComputerIsFirst(true);
                 break;
         }
-        mGameOptions.putExtra(EXTRA_PLAYER_TYPES, mPlayerTypes);
     }
 
     private void setGameInteractivity(boolean isAComputerGame) {
@@ -77,7 +77,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private void setPlayerTypes(boolean checked, String player1, String player2) {
         if (checked) {
-            mPlayerTypes = new String[]{player1, player2};
+            String[] playerTypes = new String[]{player1, player2};
+            mGameOptions.putExtra(EXTRA_PLAYER_TYPES, playerTypes);
         }
     }
 

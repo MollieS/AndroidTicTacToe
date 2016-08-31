@@ -14,33 +14,47 @@ import ttt.game.Marks;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final List<Button> mBoard = new ArrayList<>();
+    private List<Button> mBoard = new ArrayList<>();
     private GameEngine mGameEngine;
-    private static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
-    private static final String EXTRA_BOARD_TYPE = "mollie.tictactoe.board_type";
-    private static final String EXTRA_GAME_TYPE = "mollie.tictactoe.game_type";
-    private static final String EXTRA_COMPUTER_FIRST = "mollie.tictactoe.computer_first";
+    public static final String EXTRA_PLAYER_TYPES = "mollie.tictactoe.player_types";
+    public static final String EXTRA_BOARD_TYPE = "mollie.tictactoe.board_type";
+    public static final String EXTRA_GAME_TYPE = "mollie.tictactoe.game_type";
+    public static final String EXTRA_COMPUTER_FIRST = "mollie.tictactoe.computer_first";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] playersTypes = getIntent().getStringArrayExtra(EXTRA_PLAYER_TYPES);
-        boolean isAComputerGame = getIntent().getBooleanExtra(EXTRA_GAME_TYPE, false);
-        int boardSize = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
-        boolean isComputerMove = getIntent().getBooleanExtra(EXTRA_COMPUTER_FIRST, false);
-        createGame(playersTypes, boardSize);
-        createBoard();
-        setClickable(isAComputerGame);
-        if (isComputerMove) {
-            int move = getComputerMove();
-            mGameEngine.play(move);
-            mBoard.get(move).setText(mGameEngine.board(move).toString());
+        mGameEngine = getGame();
+        mBoard = createBoard();
+        setClickable(isAComputerGame(EXTRA_GAME_TYPE));
+        checkComputerMoveFirst();
+    }
+
+    private void checkComputerMoveFirst() {
+        if (isAComputerGame(EXTRA_COMPUTER_FIRST)) {
+            playComputerMove();
         }
     }
 
+    private boolean isAComputerGame(String extraGameType) {
+        return getIntent().getBooleanExtra(extraGameType, false);
+    }
+
+    private GameEngine getGame() {
+        String[] playersTypes = getIntent().getStringArrayExtra(EXTRA_PLAYER_TYPES);
+        int boardSize = getIntent().getIntExtra(EXTRA_BOARD_TYPE, 3);
+        return createGame(playersTypes, boardSize);
+    }
+
+    private void playComputerMove() {
+        int move = getComputerMove();
+        mGameEngine.play(move);
+        mBoard.get(move).setText(mGameEngine.board(move).toString());
+    }
+
     private int getComputerMove() {
-        int move = -1;
+        Integer move = null;
         try {
             move = mGameEngine.getPlayerMove(mGameEngine.showBoard());
         } catch (Exception e) {
@@ -49,32 +63,34 @@ public class MainActivity extends AppCompatActivity {
         return move;
     }
 
-    private void createBoard() {
+    private List<Button> createBoard() {
+        List<Button> board = new ArrayList<>();
         Button mLeftTop = (Button) findViewById(R.id.left_top_corner);
-        mBoard.add(mLeftTop);
+        board.add(mLeftTop);
         Button mCentreTop = (Button) findViewById(R.id.top_centre);
-        mBoard.add(mCentreTop);
+        board.add(mCentreTop);
         Button mRightTop = (Button) findViewById(R.id.right_top_corner);
-        mBoard.add(mRightTop);
+        board.add(mRightTop);
         Button mLeftCentre = (Button) findViewById(R.id.left_centre);
-        mBoard.add(mLeftCentre);
+        board.add(mLeftCentre);
         Button mCentre = (Button) findViewById(R.id.centre_button);
-        mBoard.add(mCentre);
+        board.add(mCentre);
         Button mRightCentre = (Button) findViewById(R.id.right_centre);
-        mBoard.add(mRightCentre);
+        board.add(mRightCentre);
         Button mLeftBottom = (Button) findViewById(R.id.left_bottom);
-        mBoard.add(mLeftBottom);
+        board.add(mLeftBottom);
         Button mCentreBottom = (Button) findViewById(R.id.centre_bottom);
-        mBoard.add(mCentreBottom);
+        board.add(mCentreBottom);
         Button mRightBottom = (Button) findViewById(R.id.right_bottom);
-        mBoard.add(mRightBottom);
+        board.add(mRightBottom);
+        return board;
     }
 
-    private void createGame(String[] playerTypes, int boardSize) {
+    private GameEngine createGame(String[] playerTypes, int boardSize) {
         Board board = new Board(boardSize);
         Player player1 = AndroidPlayerFactory.create(playerTypes[0], Marks.X);
         Player player2 = AndroidPlayerFactory.create(playerTypes[1], Marks.O);
-        this.mGameEngine = new GameEngine(player1, player2, board);
+        return new GameEngine(player1, player2, board);
     }
 
     private void setClickable(boolean isAComputerGame) {
