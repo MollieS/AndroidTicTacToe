@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-import static mollie.tictactoe.AndroidPlayerType.HUMAN;
-import static mollie.tictactoe.AndroidPlayerType.PERFECT;
-import static mollie.tictactoe.AndroidPlayerType.RANDOM;
-import static mollie.tictactoe.MainActivity.EXTRA_BOARD_TYPE;
-import static mollie.tictactoe.MainActivity.EXTRA_COMPUTER_FIRST;
-import static mollie.tictactoe.MainActivity.EXTRA_GAME_TYPE;
-import static mollie.tictactoe.MainActivity.EXTRA_PLAYER_TYPES;
+import static mollie.tictactoe.MobilePlayerTypes.HUMAN;
+import static mollie.tictactoe.MobilePlayerTypes.PERFECT;
+import static mollie.tictactoe.MobilePlayerTypes.RANDOM;
+import static mollie.tictactoe.GamePlayHelper.*;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_BOARD_TYPE;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_GAME_TYPE;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_PLAYER_TYPES;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         mPlayButton = (Button) findViewById(R.id.play_button);
-        mGameOptions = new Intent(MenuActivity.this, MainActivity.class);
+        mGameOptions = new Intent(MenuActivity.this, SmallBoardActivity.class);
         setPlayButton();
     }
 
@@ -65,13 +65,13 @@ public class MenuActivity extends AppCompatActivity {
             case R.id._3x3:
                 if (checked) {
                     mGameOptions.putExtra(EXTRA_BOARD_TYPE, 3);
-                    mGameOptions.setClass(MenuActivity.this, MainActivity.class);
+                    mGameOptions.setClass(MenuActivity.this, SmallBoardActivity.class);
                 }
                 break;
             case R.id._4x4:
                 if (checked) {
                     mGameOptions.putExtra(EXTRA_BOARD_TYPE, 4);
-                    mGameOptions.setClass(MenuActivity.this, FourByFourActivity.class);
+                    mGameOptions.setClass(MenuActivity.this, BigBoardActivity.class);
                 }
                 break;
         }

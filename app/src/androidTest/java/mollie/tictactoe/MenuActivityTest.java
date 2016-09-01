@@ -17,12 +17,10 @@ import static android.support.test.espresso.intent.matcher.BundleMatchers.hasEnt
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtras;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static mollie.tictactoe.AndroidPlayerType.HUMAN;
-import static mollie.tictactoe.MainActivity.EXTRA_BOARD_TYPE;
-import static mollie.tictactoe.MainActivity.EXTRA_COMPUTER_FIRST;
-import static mollie.tictactoe.MainActivity.EXTRA_GAME_TYPE;
-import static mollie.tictactoe.MainActivity.EXTRA_PLAYER_TYPES;
-import static mollie.tictactoe.MainActivityTest.clickButton;
+import static mollie.tictactoe.MobilePlayerTypes.HUMAN;
+import static mollie.tictactoe.GamePlayHelper.EXTRA_COMPUTER_FIRST;
+import static mollie.tictactoe.SmallBoardActivityTest.clickButton;
+import static mollie.tictactoe.MobileGameConstructor.*;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static ttt.PlayerType.PERFECT;

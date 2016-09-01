@@ -6,15 +6,15 @@ import ttt.players.PerfectPlayer;
 import ttt.players.RandomLocationGenerator;
 import ttt.players.RandomPlayer;
 
-public class AndroidPlayerFactory {
+public class MobilePlayerFactory {
 
     public static Player create(String playerType, Marks mark) {
         switch (playerType) {
-            case AndroidPlayerType.HUMAN:
+            case MobilePlayerTypes.HUMAN:
                 return new MobilePlayer(mark);
-            case AndroidPlayerType.PERFECT:
+            case MobilePlayerTypes.PERFECT:
                 return new PerfectPlayer(mark);
-            case AndroidPlayerType.RANDOM:
+            case MobilePlayerTypes.RANDOM:
                 return new RandomPlayer(new RandomLocationGenerator(), mark);
         }
         return null;
