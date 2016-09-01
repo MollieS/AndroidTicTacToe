@@ -65,11 +65,13 @@ public class MenuActivity extends AppCompatActivity {
             case R.id._3x3:
                 if (checked) {
                     mGameOptions.putExtra(EXTRA_BOARD_TYPE, 3);
+                    mGameOptions.setClass(MenuActivity.this, MainActivity.class);
                 }
                 break;
             case R.id._4x4:
                 if (checked) {
                     mGameOptions.putExtra(EXTRA_BOARD_TYPE, 4);
+                    mGameOptions.setClass(MenuActivity.this, FourByFourActivity.class);
                 }
                 break;
         }
