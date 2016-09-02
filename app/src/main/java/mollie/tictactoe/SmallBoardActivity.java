@@ -24,11 +24,11 @@ public class SmallBoardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         GameEngine gameEngine = getGame(intent);
         List<Button> board = createBoard();
-        setClickable(isAComputerTurn(EXTRA_GAME_TYPE, intent), board, getApplicationContext(), gameEngine);
-        if (isAComputerTurn(EXTRA_GAME_TYPE, intent)) {
+        if (isAComputerTurn(EXTRA_COMPUTER_FIRST, intent)) {
             int location = playComputerMove(gameEngine);
             updateView(location, board, gameEngine);
         }
+        setClickable(isAComputerTurn(EXTRA_GAME_TYPE, intent), board, getApplicationContext(), gameEngine);
     }
 
     private void updateView(int location, List<Button> board, GameEngine gameEngine) {

@@ -65,6 +65,13 @@ public class BigBoardActivityTest {
         onView(withText("O")).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void cannotChangeAMoveAlreadyMade() {
+        startActivity(PERFECT, MOBILE, true, true);
+        clickButton(R.id.top_left);
+        onView(withText("O")).check(matches(not(isDisplayed())));
+    }
+
     private void startActivity(String player1, String player2, boolean isAComputerGame, boolean isComputerFirst) {
         Context targetContext = InstrumentationRegistry.getInstrumentation()
                 .getTargetContext();

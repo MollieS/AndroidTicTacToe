@@ -10,6 +10,7 @@ import java.util.List;
 
 import ttt.game.GameEngine;
 
+import static mollie.tictactoe.GamePlayHelper.EXTRA_COMPUTER_FIRST;
 import static mollie.tictactoe.GamePlayHelper.isAComputerTurn;
 import static mollie.tictactoe.GamePlayHelper.playComputerMove;
 import static mollie.tictactoe.MobileGameConstructor.EXTRA_GAME_TYPE;
@@ -25,11 +26,11 @@ public class BigBoardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         List<Button> board = createBoard();
         GameEngine gameEngine = getGame(intent);
-        setClickable(isAComputerTurn(EXTRA_GAME_TYPE, intent), board, getApplicationContext(), gameEngine);
-        if (isAComputerTurn(EXTRA_GAME_TYPE, intent)) {
+        if (isAComputerTurn(EXTRA_COMPUTER_FIRST, intent)) {
             int location = playComputerMove(gameEngine);
             updateView(location, board, gameEngine);
         }
+        setClickable(isAComputerTurn(EXTRA_GAME_TYPE, intent), board, getApplicationContext(), gameEngine);
     }
 
     private void updateView(int location, List<Button> board, GameEngine gameEngine) {
@@ -54,7 +55,6 @@ public class BigBoardActivity extends AppCompatActivity {
         board.add(getCell(R.id.bottom_mid_left));
         board.add(getCell(R.id.bottom_mid_right));
         board.add(getCell(R.id.bottom_right));
-
         return board;
     }
 
