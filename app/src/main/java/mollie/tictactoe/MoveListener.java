@@ -1,34 +1,67 @@
 package mollie.tictactoe;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.List;
 
 import ttt.game.GameEngine;
 import ttt.game.Marks;
 
 public class MoveListener implements View.OnClickListener {
 
-    private final Button cell;
+    private final String LOG_TAG = getClass().getName();
+    private final List<Button> uiBoard;
     private final GameEngine gameEngine;
+    private final Button cell;
     private final int location;
     private final Context context;
+    private final boolean isAComputerGame;
 
-    public MoveListener(int location, Button cell, Context context, GameEngine gameEngine) {
+    public MoveListener(int location, List<Button> uiBoard, Context context, GameEngine gameEngine, boolean isAComputerGame) {
         this.location = location;
-        this.cell = cell;
+        this.uiBoard = uiBoard;
+        this.cell = uiBoard.get(location);
         this.context = context;
         this.gameEngine = gameEngine;
+        this.isAComputerGame = isAComputerGame;
     }
 
     @Override
     public void onClick(View view) {
-        if (!gameEngine.isOver() && gameEngine.board(location) == Marks.NULL) {
-            updateView();
+        playMove();
+        showGameStatus();
+        playComputerOpponentMove();
+    }
+
+    private void playComputerOpponentMove() {
+        if (isAComputerGame) {
+            playComputerMove();
         }
+    }
+
+    private void showGameStatus() {
         if (gameEngine.isOver()) {
             showResult();
+        }
+    }
+
+    private void playMove() {
+        if (!gameEngine.isOver() && gameEngine.board(location) == Marks.NULL) {
+            updateView(cell, location);
+        }
+    }
+
+    private void playComputerMove() {
+        try {
+            int computerMove = gameEngine.getPlayerMove(gameEngine.showBoard());
+            Button button = uiBoard.get(computerMove);
+            updateView(button, computerMove);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Error: " + e);
         }
     }
 
@@ -40,9 +73,9 @@ public class MoveListener implements View.OnClickListener {
         }
     }
 
-    private void updateView() {
-        gameEngine.play(location);
-        cell.setText(gameEngine.board(location).toString());
+    private void updateView(Button cellButton, int moveLocation) {
+        gameEngine.play(moveLocation);
+        cellButton.setText(gameEngine.board(moveLocation).toString());
     }
 
     private void showWinner() {

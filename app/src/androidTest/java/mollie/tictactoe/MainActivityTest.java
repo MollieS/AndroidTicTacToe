@@ -1,5 +1,8 @@
 package mollie.tictactoe;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -14,17 +17,21 @@ import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static mollie.tictactoe.AndroidPlayerType.HUMAN;
+import static mollie.tictactoe.MainActivity.*;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static ttt.PlayerType.RANDOM;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
     @Rule
-    public ActivityTestRule mActivityRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule mActivityRule = new ActivityTestRule<>(MainActivity.class, true, false);
 
     @Test
     public void canWinAGame() {
+        startActivity(HUMAN, HUMAN, false);
         clickButton(R.id.left_top_corner);
         clickButton(R.id.left_centre);
         clickButton(R.id.top_centre);
@@ -37,6 +44,7 @@ public class MainActivityTest {
 
     @Test
     public void canDrawAGame() {
+        startActivity(HUMAN, HUMAN, false);
         clickButton(R.id.left_top_corner);
         clickButton(R.id.centre_button);
         clickButton(R.id.left_centre);
@@ -51,8 +59,23 @@ public class MainActivityTest {
                 .check(matches(isDisplayed()));
     }
 
+    @Test
+    public void showsAComputerMove() {
+        startActivity(HUMAN, RANDOM, true);
+        clickButton(R.id.left_top_corner);
+        onView(withText("O")).check(matches(isDisplayed()));
+    }
+
+    private void startActivity(String player1, String player2, boolean isAComputerGame) {
+        Context targetContext = InstrumentationRegistry.getInstrumentation()
+                .getTargetContext();
+        Intent intent = new Intent(targetContext, MainActivity.class);
+        intent.putExtra(EXTRA_PLAYER_TYPES, new String[]{player1, player2});
+        intent.putExtra(EXTRA_GAME_TYPE, isAComputerGame);
+        mActivityRule.launchActivity(intent);
+    }
+
     public static void clickButton(int id) {
         onView(withId(id)).perform(click());
     }
-
 }
