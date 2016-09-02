@@ -38,7 +38,7 @@ public class MoveListener implements View.OnClickListener {
     }
 
     private void playComputerOpponentMove() {
-        if (isAComputerGame && !gameEngine.isOver()) {
+        if (isAComputerGame) {
             playComputerMove();
         }
     }
@@ -60,6 +60,7 @@ public class MoveListener implements View.OnClickListener {
             int computerMove = gameEngine.getPlayerMove(gameEngine.showBoard());
             Button button = uiBoard.get(computerMove);
             updateView(button, computerMove);
+            showGameStatus();
         } catch (Exception e) {
             Log.e(LOG_TAG, "Error: " + e);
         }

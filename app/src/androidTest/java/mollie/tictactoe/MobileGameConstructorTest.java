@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import ttt.game.GameEngine;
 
 import static junit.framework.Assert.assertEquals;
-import static mollie.tictactoe.MobilePlayerTypes.HUMAN;
+import static mollie.tictactoe.MobilePlayers.MOBILE;
 
 @RunWith(AndroidJUnit4.class)
 public class MobileGameConstructorTest {
@@ -21,7 +21,7 @@ public class MobileGameConstructorTest {
     public void createsAGameFromAnIntent() {
         Intent intent = createIntent();
         intent.putExtra(MobileGameConstructor.EXTRA_BOARD_TYPE, 3);
-        intent.putExtra(MobileGameConstructor.EXTRA_PLAYER_TYPES, new String[]{HUMAN, HUMAN});
+        intent.putExtra(MobileGameConstructor.EXTRA_PLAYER_TYPES, new String[]{MOBILE, MOBILE});
 
         GameEngine game = MobileGameConstructor.getGame(intent);
 

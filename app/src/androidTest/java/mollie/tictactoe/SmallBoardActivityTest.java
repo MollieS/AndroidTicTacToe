@@ -17,8 +17,9 @@ import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static mollie.tictactoe.MobilePlayerTypes.HUMAN;
-import static mollie.tictactoe.MobileGameConstructor.*;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_GAME_TYPE;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_PLAYER_TYPES;
+import static mollie.tictactoe.MobilePlayers.MOBILE;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static ttt.PlayerType.RANDOM;
@@ -31,7 +32,7 @@ public class SmallBoardActivityTest {
 
     @Test
     public void canWinAGame() {
-        startActivity(HUMAN, HUMAN, false);
+        startActivity(MOBILE, MOBILE, false);
         clickButton(R.id.left_top_corner);
         clickButton(R.id.left_centre);
         clickButton(R.id.top_centre);
@@ -44,7 +45,7 @@ public class SmallBoardActivityTest {
 
     @Test
     public void canDrawAGame() {
-        startActivity(HUMAN, HUMAN, false);
+        startActivity(MOBILE, MOBILE, false);
         clickButton(R.id.left_top_corner);
         clickButton(R.id.centre_button);
         clickButton(R.id.left_centre);
@@ -61,7 +62,7 @@ public class SmallBoardActivityTest {
 
     @Test
     public void showsAComputerMove() {
-        startActivity(HUMAN, RANDOM, true);
+        startActivity(MOBILE, RANDOM, true);
         clickButton(R.id.left_top_corner);
         onView(withText("O")).check(matches(isDisplayed()));
     }

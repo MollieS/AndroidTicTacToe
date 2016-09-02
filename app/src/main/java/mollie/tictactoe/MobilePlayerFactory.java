@@ -10,11 +10,11 @@ public class MobilePlayerFactory {
 
     public static Player create(String playerType, Marks mark) {
         switch (playerType) {
-            case MobilePlayerTypes.HUMAN:
+            case MobilePlayers.MOBILE:
                 return new MobilePlayer(mark);
-            case MobilePlayerTypes.PERFECT:
+            case MobilePlayers.PERFECT:
                 return new PerfectPlayer(mark);
-            case MobilePlayerTypes.RANDOM:
+            case MobilePlayers.RANDOM:
                 return new RandomPlayer(new RandomLocationGenerator(), mark);
         }
         return null;
