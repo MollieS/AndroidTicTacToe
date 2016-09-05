@@ -21,9 +21,4 @@ public class MobilePlayerTest {
         Board board = new Board(3);
         assertEquals(0, player.getLocation(board));
     }
-
-    @Test
-    public void returnsCorrectPlayerType() throws Exception {
-        assertEquals(MobilePlayer.class, player.playerType());
-    }
 }

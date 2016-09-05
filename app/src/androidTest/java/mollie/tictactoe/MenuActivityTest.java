@@ -17,12 +17,12 @@ import static android.support.test.espresso.intent.matcher.BundleMatchers.hasEnt
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtras;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static mollie.tictactoe.AndroidPlayerType.HUMAN;
-import static mollie.tictactoe.MainActivity.EXTRA_BOARD_TYPE;
-import static mollie.tictactoe.MainActivity.EXTRA_COMPUTER_FIRST;
-import static mollie.tictactoe.MainActivity.EXTRA_GAME_TYPE;
-import static mollie.tictactoe.MainActivity.EXTRA_PLAYER_TYPES;
-import static mollie.tictactoe.MainActivityTest.clickButton;
+import static mollie.tictactoe.GamePlayHelper.EXTRA_COMPUTER_FIRST;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_BOARD_TYPE;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_GAME_TYPE;
+import static mollie.tictactoe.MobileGameConstructor.EXTRA_PLAYER_TYPES;
+import static mollie.tictactoe.MobilePlayers.MOBILE;
+import static mollie.tictactoe.SmallBoardActivityTest.clickButton;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static ttt.PlayerType.PERFECT;
@@ -46,7 +46,7 @@ public class MenuActivityTest {
         intended(allOf(
                 hasExtras(allOf(
                         hasBoardType(3),
-                        hasPlayerTypes(HUMAN, HUMAN),
+                        hasPlayerTypes(MOBILE, MOBILE),
                         hasComputerFirstBoolean(false),
                         hasComputerGameBoolean(false)))));
     }
@@ -57,7 +57,7 @@ public class MenuActivityTest {
         intended(allOf(
                 hasExtras(allOf(
                         hasBoardType(3),
-                        hasPlayerTypes(HUMAN, RANDOM),
+                        hasPlayerTypes(MOBILE, RANDOM),
                         hasComputerFirstBoolean(false),
                         hasComputerGameBoolean(true)))));
     }
@@ -68,7 +68,7 @@ public class MenuActivityTest {
         intended(allOf(
                 hasExtras(allOf(
                         hasBoardType(3),
-                        hasPlayerTypes(HUMAN, PERFECT),
+                        hasPlayerTypes(MOBILE, PERFECT),
                         hasComputerFirstBoolean(false),
                         hasComputerGameBoolean(true)))));
     }
@@ -79,7 +79,7 @@ public class MenuActivityTest {
         intended(allOf(
                 hasExtras(allOf(
                         hasBoardType(3),
-                        hasPlayerTypes(RANDOM, HUMAN),
+                        hasPlayerTypes(RANDOM, MOBILE),
                         hasComputerFirstBoolean(true),
                         hasComputerGameBoolean(true)))));
     }
@@ -90,7 +90,7 @@ public class MenuActivityTest {
         intended(allOf(
                 hasExtras(allOf(
                         hasBoardType(3),
-                        hasPlayerTypes(PERFECT, HUMAN),
+                        hasPlayerTypes(PERFECT, MOBILE),
                         hasComputerFirstBoolean(true),
                         hasComputerGameBoolean(true)))));
     }

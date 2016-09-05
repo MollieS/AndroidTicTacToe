@@ -9,4 +9,5 @@
     <string name="human_v_perfect_computer">Human v Perfect Computer</string>
     <string name="random_computer_v_human">Random Computer v Human</string>
     <string name="perfect_computer_v_human">Perfect Computer v Human</string>
+    <string name="_4x4">4x4</string>
 </resources>
