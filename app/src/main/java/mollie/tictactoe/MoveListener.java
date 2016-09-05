@@ -1,10 +1,11 @@
 package mollie.tictactoe;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -45,7 +46,24 @@ public class MoveListener implements View.OnClickListener {
 
     private void showGameStatus() {
         if (gameEngine.isOver()) {
-            showResult();
+            String status = getGameStatus();
+            new AlertDialog.Builder(context)
+                    .setTitle(status)
+                    .setMessage("Would you like to play again?")
+                    .setPositiveButton("yes", (dialogInterface, i) -> {
+                        ((Activity) context).onBackPressed();
+                    })
+                    .setNegativeButton("no", (dialogInterface, i) -> {
+                    })
+                    .show();
+        }
+    }
+
+    private String getGameStatus() {
+        if (gameEngine.isWon()) {
+            return gameEngine.winningMark() + " wins!";
+        } else {
+            return context.getString(R.string.draw_text);
         }
     }
 
@@ -68,21 +86,8 @@ public class MoveListener implements View.OnClickListener {
         }
     }
 
-    private void showResult() {
-        if (gameEngine.isWon()) {
-            showWinner();
-        } else {
-            Toast.makeText(context, R.string.toast_draw, Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void updateView(Button cellButton, int moveLocation) {
         gameEngine.play(moveLocation);
         cellButton.setText(gameEngine.board(moveLocation).toString());
-    }
-
-    private void showWinner() {
-        String winningMessage = gameEngine.winningMark() + context.getString(R.string.toast_win);
-        Toast.makeText(context, winningMessage, Toast.LENGTH_SHORT).show();
     }
 }
