@@ -30,7 +30,7 @@ public class BigBoardActivity extends AppCompatActivity {
             int location = playComputerMove(gameEngine);
             updateView(location, board, gameEngine);
         }
-        setClickable(isAComputerTurn(EXTRA_GAME_TYPE, intent), board, getApplicationContext(), gameEngine);
+        setClickable(isAComputerTurn(EXTRA_GAME_TYPE, intent), board, BigBoardActivity.this, gameEngine);
     }
 
     private void updateView(int location, List<Button> board, GameEngine gameEngine) {
